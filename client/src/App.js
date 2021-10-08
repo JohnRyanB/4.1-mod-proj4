@@ -9,17 +9,19 @@ function url(path) {
 }
 
 function App() {
-	const [data, setData] = useState("hi");
+	const [data, setData] = useState([]);
 
 	useEffect(() => {
 		axios
-			.get(url("/api/"))
+			.get(url("/api/users/"))
 			.then((res) => setData(res.data))
 			.catch((err) => console.log(err));
 	}, []);
 	return (
 		<div className="App">
-			<header className="App-header">What is in the API? {data.data}</header>
+			<header className="App-header">
+				What is in the API? {data.map((d) => d.username)}
+			</header>
 		</div>
 	);
 }
